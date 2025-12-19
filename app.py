@@ -13,8 +13,8 @@ SHEET_URL = "https://docs.google.com/spreadsheets/d/1eNiLAHx6I8DlUxrVOyuC5DAl6QM
 # List of employees
 EMPLOYEES = ["Select Name", "Amit Sharma", "Priya Singh", "Rajesh Kumar", "Suman Verma"]
 
-st.set_page_config(page_title="Office Attendance", page_icon="📍")
-st.title("📍 Office Attendance System")
+st.set_page_config(page_title="Recovered India Attendance", page_icon="📍")
+st.title("📍 RI Attendance System")
 
 # 1. Connect to Google Sheets
 conn = st.connection("gsheets", type=GSheetsConnection)
@@ -67,3 +67,4 @@ if location and name != "Select Name":
 
 elif name == "Select Name":
     st.warning("Please select your name from the dropdown list.")
+
