@@ -9,7 +9,7 @@ import pandas as pd
 # --- CONFIGURATION ---
 OFFICE_LOCATION = (22.723126709479242, 75.88450302733477)
 ALLOWED_DISTANCE_METERS = 50
-SHEET_URL = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_URL_HERE/edit#gid=0"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1eNiLAHx6I8DlUxrVOyuC5DAl6QM77ISDMwRlyUSbjuc/edit?gid=0#gid=0"
 EMPLOYEE_LIST = ["Amit Sharma", "Priya Singh", "Rajesh Kumar", "Suman Verma", "Vikram Rathore"]
 
 # Timezone Setup
@@ -92,3 +92,4 @@ elif mode == "Daily Summary (Admin)":
         
     st.subheader("Today's Detailed Logs")
     st.dataframe(today_df)
+
