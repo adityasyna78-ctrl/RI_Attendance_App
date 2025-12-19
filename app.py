@@ -9,7 +9,7 @@ import pandas as pd
 # --- CONFIGURATION ---
 OFFICE_LOCATION = (22.723126709479242, 75.88450302733477)
 ALLOWED_DISTANCE_METERS = 50
-SHEET_URL = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit#gid=0"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1eNiLAHx6I8DlUxrVOyuC5DAl6QM77ISDMwRlyUSbjuc/edit?usp=sharing"
 EMPLOYEES = ["Select Name", "Amit Sharma", "Priya Singh", "Rajesh Kumar", "Suman Verma"]
 
 st.set_page_config(page_title="Office Attendance", page_icon="📍")
@@ -68,3 +68,4 @@ if location and name != "Select Name":
                 st.error("Error saving to Sheet. Check permissions.")
         else:
             st.error(f"❌ You are {round(distance)}m away. Move within 50m.")
+
