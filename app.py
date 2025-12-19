@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_geolocation import streamlit_geolocation
-from math import geodesic
+from geopy.distance import geodesic
 
 # --- CONFIGURATION ---
 # Replace these with your business's actual coordinates
@@ -30,4 +30,5 @@ if location:
         else:
             st.error(f"❌ Check-in Failed. You are {round(distance)}m away.")
 else:
+
     st.info("Please allow location access and click the 'Get Location' button above.")
