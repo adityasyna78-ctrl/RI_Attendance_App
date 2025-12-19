@@ -64,32 +64,23 @@ elif mode == "Daily Summary (Admin)":
     st.title("📊 Daily Attendance Summary")
     st.write(f"Date: {today_date}")
 
-    # Read current logs
-    df = conn.read(spreadsheet=SHEET_URL)
-    
-    # Filter only for today's entries
-    today_df = df[df['Date'] == today_date]
-    
-    # Get unique names who checked in today
-    checked_in_names = today_df[today_df['Action'] == 'Check-in']['Name'].unique()
-    
-    # Calculate Absentees
-    absentees = [emp for emp in EMPLOYEE_LIST if emp not in checked_in_names]
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Total Employees", len(EMPLOYEE_LIST))
-        st.success(f"Present: {len(checked_in_names)}")
-    with col2:
-        st.error(f"Absent: {len(absentees)}")
-
-    if absentees:
-        st.subheader("❌ List of Absentees")
-        for person in absentees:
-            st.write(f"- {person}")
-    else:
-        st.success("Everyone is present today!")
+    try:
+        # Pass the URL directly to ensure no mismatch
+        df = conn.read(spreadsheet=SHEET_URL, ttl="0") 
         
-    st.subheader("Today's Detailed Logs")
-    st.dataframe(today_df)
-
+        if df.empty:
+            st.warning("The Google Sheet is empty. No logs found.")
+        else:
+            # Filter only for today's entries
+            # Ensure 'Date' column exists in your Sheet!
+            today_df = df[df['Date'] == today_date]
+            
+            # Rest of your logic...
+            checked_in_names = today_df[today_df['Action'] == 'Check-in']['Name'].unique()
+            absentees = [emp for emp in EMPLOYEE_LIST if emp not in checked_in_names]
+            
+            # ... (display metrics and dataframe)
+            
+    except Exception as e:
+        st.error(f"Could not access Google Sheet: {e}")
+        st.info("💡 Tip: Ensure you shared the Google Sheet with your Service Account email as an Editor.")
